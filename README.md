@@ -23,14 +23,11 @@ Now, in this example, if I want to merge changes from the original url, I do:
 git subtree pull --prefix web/cms/grav/makkus.grav https://github.com/makkus/grav_ansible.git master --squash
 ```
 
-To make it easier, we can add the subtree as a remote to refer to it by a remote name:
+
+To push back changes made locally to upstream:
 
 ```
-git remote add -f grav https://github.com/makkus/grav_ansible.git 
+git push --prefix web/cms/grav/makkus.grav https://github.com/makkus/grav_ansible.git master
 ```
 
-To push back changes made locally, you first fetch the latest remote:
-
-```
-git fetch --prefix web/cms/grav/makkus.grav https://github.com/makkus/grav_ansible.git master
-```
+If you don't upstream, you just fork upstream, push to your fork, and then send a pull request.
