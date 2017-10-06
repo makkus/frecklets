@@ -20,7 +20,7 @@
 
 - name: Copy traefik config file
   template:
-    src: "{{ traefik_template }}.j2"
+    src: "{{ traefik_template }}"
     dest: "{{ traefik_config_file }}"
     owner: root
     group: root
