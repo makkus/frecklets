@@ -1,0 +1,20 @@
+logLevel = "DEBUG"
+defaultEntryPoints = ["http"]
+traefikLogsFile = "/var/log/traefik.log"
+accessLogsFile = "/var/log/traefik_access.log"
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":8888"
+
+[file]
+
+[backends]
+  [backends.backend1]
+    [backends.backend1.servers.server1]
+    url = "http://127.0.0.1:2202"
+
+[frontends]
+  [frontends.frontend1]
+  backend = "backend1"
+  rule = "Path: /"
