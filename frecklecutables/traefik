@@ -5,5 +5,5 @@ tasks:
       name: traefik
       group: traefik
       comment: "traefik service user"
-  - kibatic.traefik:
-      traefik_template: /frecklets/frecklecutables/traefik.toml
+  - KIBATIC.TRAEFIK:
+      traefik_template: /freckles/examples/traefik.toml
