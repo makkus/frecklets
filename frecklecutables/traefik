@@ -5,6 +5,6 @@ tasks:
       name: traefik
       group: traefik
       comment: "traefik service user"
-  - KIBATIC.TRAEFIK:
+  - install-traefik:
       traefik_template: /freckles/examples/traefik.toml
       traefik_user: traefik
