@@ -1,3 +1,5 @@
+doc:
+  help: installing ubooquity ebook/comic server
 tasks:
   - USER:
       name: ubooquity
