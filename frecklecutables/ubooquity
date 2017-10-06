@@ -1,0 +1,33 @@
+tasks:
+  - USER:
+      name: ubooquity
+      comment: "Ubooquity service user"
+  - install-oracle-java
+  - get_url:
+      url: http://vaemendis.net/ubooquity/downloads/Ubooquity-2.1.1.zip
+      dest: /tmp/Ubooquity.zip
+      mode: 775
+  - install:
+      - unzip
+  - CREATE-FOLDER:
+      path: /opt/ubooquity
+  - CREATE-FOLDER:
+      path: /var/ubooquity
+      owner: ubooquity
+  - UNARCHIVE:
+      src: /tmp/Ubooquity.zip
+      dest: /opt/ubooquity
+      remote_src: yes
+      creates: /opt/ubooquity/Ubooquity.jar
+  - TUMF.SYSTEMD-SERVICE:
+      systemd_service_name: "ubooquity"
+      systemd_service_Unit_Description: Ubooquity server
+      systemd_service_Unit_After: network.target
+      systemd_service_Install_WantedBy: multi-user.target
+      systemd_service_Service_Restart: always
+      systemd_service_Service_User: ubooquity
+      systemd_service_Service_ExecStart: /usr/bin/java -jar /opt/ubooquity/Ubooquity.jar --headless --remoteadmin --workdir /var/ubooquity
+  - SERVICE:
+      name: ubooquity
+      enabled: yes
+      state: started
