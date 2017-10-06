@@ -9,17 +9,25 @@ args:
     help: path to the traefik config file
     metavar: TEMPLATE_PATH
     is_var: false
+  traefik_user:
+    arg_name: traefik-user
+    help: the user to run traefik
+    extra_arg_names: '-u'
+    required: false
+    default: root
+    metavar: USER
+    is_var: false
 tasks:
   - GROUP:
-      name: traefik
+      name: "{{ traefik_user }}"
   - USER:
-      name: traefik
-      group: traefik
+      name: "{{ traefik_user }}"
+      group: "{{ traefik_user }}"
       comment: "traefik service user"
   - CREATE-FOLDER:
       path: /var/log/traefik
-      owner: traefik
-      group: traefik
+      owner: "{{ traefik_user }}"
+      group: "{{ traefik_user }}"
   - install-traefik:
-      traefik_user: traefik
+      traefik_user: "{{ traefik_user }}"
       traefik_template: "{{ traefik_template }}"
