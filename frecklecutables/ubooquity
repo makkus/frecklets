@@ -19,7 +19,7 @@ tasks:
       dest: /opt/ubooquity
       remote_src: yes
       creates: /opt/ubooquity/Ubooquity.jar
-  - TUMF.SYSTEMD-SERVICE:
+  - add-systemd-unit:
       systemd_service_name: "ubooquity"
       systemd_service_Unit_Description: Ubooquity server
       systemd_service_Unit_After: network.target

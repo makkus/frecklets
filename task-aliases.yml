@@ -4,3 +4,10 @@ tasks:
         task-desc: installing traefik
         task-type: ansible-role
         task-name: kibatic.traefik
+        become: yes
+  - add-systemd-unit:
+      meta:
+        become: yes
+        task-desc: adding systemd unit
+        task-name: tumf.systemd-service
+        task-type: ansible-role
