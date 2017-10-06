@@ -28,6 +28,10 @@ tasks:
       path: /var/log/traefik
       owner: "{{ traefik_user }}"
       group: "{{ traefik_user }}"
+  - CREATE-FOLDER:
+      path: /etc/traefik
+      owner: "{{ traefik_user }}"
+      group: "{{ traefik_user }}"
   - install-traefik:
       traefik_user: "{{ traefik_user }}"
       traefik_template: "{{ traefik_template }}"
