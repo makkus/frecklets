@@ -6,7 +6,7 @@ args:
     extra_arg_names:
       - '-c'
     required: true
-    help: path to the traefik config file
+    help: absolute (!!) path to the traefik config file
     metavar: TEMPLATE_PATH
     is_var: false
   traefik_user:
