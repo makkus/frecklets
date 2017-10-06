@@ -7,6 +7,7 @@ Description=Traefik
 Type=notify
 ExecStart={{ traefik_bin_path }} --configFile={{ traefik_config_file }}
 Restart=on-failure
+User={{ traefik_user }}
 
 [Install]
 WantedBy=multi-user.target

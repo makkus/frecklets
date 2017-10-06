@@ -7,4 +7,5 @@ traefik_config_file: /etc/traefik.toml
 traefik_template: traefik.toml
 traefik_systemd_unit_template: traefik.service
 traefik_systemd_unit_dest: /etc/systemd/system/traefik.service
+traefik_user: root
 traefik_update: no
