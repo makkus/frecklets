@@ -1,0 +1,6 @@
+tasks:
+  - install-traefik:
+      meta:
+        task-desc: installing traefik
+        task-type: ansible-role
+        task-name: kibatic.traefik
