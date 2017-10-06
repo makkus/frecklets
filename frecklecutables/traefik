@@ -1,0 +1,9 @@
+tasks:
+  - GROUP:
+      name: traefik
+  - USER:
+      name: traefik
+      group: traefik
+      comment: "traefik service user"
+  - kibatic.traefik:
+      traefik_template: /frecklets/frecklecutables/traefik.toml
