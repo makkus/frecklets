@@ -2,6 +2,8 @@ doc:
   help: install traefik reverse proxy
 args:
   traefik_template:
+    arg_name: config
+    extra_arg_names: '-c'
     required: true
     help: path to the traefik config file
     metavar: TEMPLATE_PATH
