@@ -28,7 +28,7 @@ tasks:
       systemd_service_Install_WantedBy: multi-user.target
       systemd_service_Service_Restart: always
       systemd_service_Service_User: ubooquity
-      systemd_service_Service_ExecStart: /usr/bin/java -jar /opt/ubooquity/Ubooquity.jar --headless --remoteadmin --workdir /var/ubooquity --host 127.0.0.1
+      systemd_service_Service_ExecStart: /usr/bin/java -jar /opt/ubooquity/Ubooquity.jar --headless --remoteadmin --workdir /var/ubooquity
   - SERVICE:
       name: ubooquity
       enabled: yes
