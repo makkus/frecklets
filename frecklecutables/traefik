@@ -1,3 +1,11 @@
+doc:
+  help: install traefik reverse proxy
+args:
+  traefik_template:
+    required: true
+    help: path to the traefik config file
+    metavar: TEMPLATE_PATH
+    is_var: false
 tasks:
   - GROUP:
       name: traefik
@@ -6,5 +14,5 @@ tasks:
       group: traefik
       comment: "traefik service user"
   - install-traefik:
-      traefik_template: /freckles/examples/traefik.toml
       traefik_user: traefik
+      traefik_template: "{{ traefik_template }}"
