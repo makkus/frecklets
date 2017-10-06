@@ -16,6 +16,10 @@ tasks:
       name: traefik
       group: traefik
       comment: "traefik service user"
+  - CREATE-FOLDER:
+      path: /var/log/traefik
+      owner: traefik
+      group: traefik
   - install-traefik:
       traefik_user: traefik
       traefik_template: "{{ traefik_template }}"
