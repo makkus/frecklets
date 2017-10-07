@@ -11,10 +11,6 @@ tasks:
      owner: sabnzbd
      group: download
  - CREATE-FOLDER:
-     path: /opt/radarr
-     owner: sabnzbd
-     group: download
- - CREATE-FOLDER:
      path: /var/run/radarr
      owner: sabnzbd
      group: download
