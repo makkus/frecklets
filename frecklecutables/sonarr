@@ -1,25 +1,25 @@
 tasks:
- - GROUP:
-     name: download
-     gid: 2000
- - USER:
-     name: sonarr
-     group: download
-     uid: 2003
- - CREATE-FOLDER:
-     path: /var/lib/sonarr
-     owner: sonarr
-     group: download
- - CREATE-FOLDER:
-     path: /var/run/sonarr
-     owner: sonarr
-     group: download
- - install:
-     packages:
-      - libmono-cil-dev
-      - curl
+ # - GROUP:
+ #     name: download
+ #     gid: 2000
+ # - USER:
+ #     name: sonarr
+ #     group: download
+ #     uid: 2003
+ # - CREATE-FOLDER:
+ #     path: /var/lib/sonarr
+ #     owner: sonarr
+ #     group: download
+ # - CREATE-FOLDER:
+ #     path: /var/run/sonarr
+ #     owner: sonarr
+ #     group: download
+ # - install:
+ #     packages:
+ #      - libmono-cil-dev
+ #      - curl
  - APT_KEY:
-     keyserver: keyserver.ubuntu.com
+     # keyserver: keyserver.ubuntu.com
      id: FDA5DFFC
  - APT_REPOSITORY:
      repo: deb http://apt.sonarr.tv/ master main
