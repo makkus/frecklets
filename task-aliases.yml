@@ -17,3 +17,9 @@ tasks:
         task-desc: setting apt source(s)
         task-type: ansible-role
         task-name: mrlesmithjr.ansible-apt-sources
+  - install-plex:
+      meta:
+        become: yes
+        task-desc: installing plex media server
+        task-type: ansible-role
+        task-name: wilmardo.plex

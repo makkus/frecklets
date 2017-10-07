@@ -1,0 +1,5 @@
+tasks:
+  - install-plex:
+      plexupdate_install: yes
+      plexupdate_config_location: /etc/plexupdate.conf
+      plexupdate_public: no
