@@ -28,7 +28,7 @@ tasks:
      dest: /tmp/radarr.tar.gz
  - install:
      packages:
-       - gunzip
+       - gzip
  - UNARCHIVE:
      src: /tmp/radarr.tar.gz
      dest: /opt/radarr
