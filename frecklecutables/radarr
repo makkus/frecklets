@@ -42,7 +42,7 @@ tasks:
      systemd_service_Service_Restart: always
      systemd_service_Service_User: radarr
      systemd_service_Service_WorkingDirectory: /opt/radarr
-     systemd_service_Service_ExecStart: /usr/bin/mono --debug /opt/Radarr/Radarr.exe --nobrowser
+     systemd_service_Service_ExecStart: /usr/bin/mono --debug /opt/radarr/Radarr.exe --nobrowser
      systemd_service_Service_Type: simple
  - SERVICE:
       name: radarr
