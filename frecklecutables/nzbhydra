@@ -1,0 +1,44 @@
+tasks:
+ - GROUP:
+     name: download
+     gid: 2000
+ - USER:
+     name: nzbhydra
+     group: download
+     uid: 2009
+ - CREATE-FOLDER:
+     path: /var/lib/nzbhydra
+     owner: nzbhydra
+     group: download
+ - CREATE-FOLDER:
+     path: /var/run/nzbhydra
+     owner: nzbhydra
+     group: download
+ - install:
+     packages:
+      - python
+ - git:
+     meta:
+       become: true
+     vars:
+       dest: /opt/nzbhydra
+       repo: https://github.com/theotherp/nzbhydra.git
+ - FILE:
+     path: /opt/nzbhydra
+     recurse: true
+     owner: nzbhydra
+ - add-systemd-unit:
+     systemd_service_name: "nzbhydra"
+     systemd_service_Unit_Description: nzbhydra indexer
+     systemd_service_Unit_After: network.target
+     systemd_service_Install_WantedBy: multi-user.target
+     systemd_service_Service_Restart: always
+     systemd_service_Service_User: nzbhydra
+     systemd_service_Service_WorkingDirectory: /opt/nzbhydra
+     systemd_service_Service_Type: simple
+     systemd_service_Service_SuccessExitStatus: 6
+     systemd_service_Service_RestartPreventExitStatus: 6
+ - SERVICE:
+      name: nzbhydra
+      enabled: yes
+      state: started
