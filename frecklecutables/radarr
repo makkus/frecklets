@@ -23,13 +23,18 @@ tasks:
       - libmono-cil-dev
       - curl
       - mediainfo
- - git:
-     meta:
-       become: true
-     vars:
-       dest: /opt/radarr
-       repo: https://github.com/Radarr/Radarr.git
-       branch: develop
+ - get_url:
+     url: https://github.com/Radarr/Radarr/releases/download/v0.2.0.852/Radarr.develop.0.2.0.852.linux.tar.gz
+     dest: /tmp/radarr.tar.gz
+ - install:
+     packages:
+       - gunzip
+ - UNARCHIVE:
+     src: /tmp/radarr.tar.gz
+     dest: /opt/radarr
+     remote_src: true
+ - fail:
+     msg: "sss"
  - FILE:
      path: /opt/radarr
      recurse: true
