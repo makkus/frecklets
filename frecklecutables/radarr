@@ -1,0 +1,50 @@
+tasks:
+ - GROUP:
+     name: download
+     gid: 2000
+ - USER:
+     name: radarr
+     group: download
+     uid: 2002
+ - CREATE-FOLDER:
+     path: /var/lib/radarr
+     owner: sabnzbd
+     group: download
+ - CREATE-FOLDER:
+     path: /opt/radarr
+     owner: sabnzbd
+     group: download
+ - CREATE-FOLDER:
+     path: /var/run/radarr
+     owner: sabnzbd
+     group: download
+ - install:
+     packages:
+      - libmono-cil-dev
+      - curl
+      - mediainfo
+ - git:
+     meta:
+       become: true
+     vars:
+       dest: /opt/radarr
+       repo: https://github.com/Radarr/Radarr.git
+       branch: develop
+ - FILE:
+     path: /opt/radarr
+     recurse: true
+     owner: radarr
+ - add-systemd-unit:
+     systemd_service_name: "radarr"
+     systemd_service_Unit_Description: radarr movie downloader
+     systemd_service_Unit_After: "syslog.target network.target"
+     systemd_service_Install_WantedBy: multi-user.target
+     systemd_service_Service_Restart: always
+     systemd_service_Service_User: radarr
+     systemd_service_Service_WorkingDirectory: /opt/radarr
+     systemd_service_Service_ExecStart: /usr/bin/mono --debug /opt/Radarr/Radarr.exe --nobrowser
+     systemd_service_Service_Type: simple
+ - SERVICE:
+      name: radarr
+      enabled: yes
+      state: started
