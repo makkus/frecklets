@@ -31,12 +31,10 @@ tasks:
        - gzip
  - UNARCHIVE:
      src: /tmp/radarr.tar.gz
-     dest: /opt/radarr
+     dest: /opt
      remote_src: true
- - fail:
-     msg: "sss"
  - FILE:
-     path: /opt/radarr
+     path: /opt/Radarr
      recurse: true
      owner: radarr
  - add-systemd-unit:
@@ -47,7 +45,7 @@ tasks:
      systemd_service_Service_Restart: always
      systemd_service_Service_User: radarr
      systemd_service_Service_WorkingDirectory: /opt/radarr
-     systemd_service_Service_ExecStart: /usr/bin/mono --debug /opt/radarr/Radarr.exe --nobrowser
+     systemd_service_Service_ExecStart: /usr/bin/mono --debug /opt/Radarr/Radarr.exe --nobrowser
      systemd_service_Service_Type: simple
  - SERVICE:
       name: radarr
