@@ -19,7 +19,7 @@ tasks:
  #      - libmono-cil-dev
  #      - curl
  - APT_KEY:
-     # keyserver: keyserver.ubuntu.com
+     keyserver: keyserver.ubuntu.com
      id: FDA5DFFC
  - APT_REPOSITORY:
      repo: deb http://apt.sonarr.tv/ master main
