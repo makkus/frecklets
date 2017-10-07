@@ -36,6 +36,7 @@ tasks:
      systemd_service_Service_User: nzbhydra
      systemd_service_Service_WorkingDirectory: /opt/nzbhydra
      systemd_service_Service_Type: simple
+     systemd_service_Service_ExecStart: /usr/bin/python /opt/nzbhydra/nzbhydra.py --nobrowser
      systemd_service_Service_SuccessExitStatus: 6
      systemd_service_Service_RestartPreventExitStatus: 6
  - SERVICE:
