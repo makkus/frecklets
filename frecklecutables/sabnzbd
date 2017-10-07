@@ -48,7 +48,7 @@ tasks:
      systemd_service_Service_User: sabnzbd
      systemd_service_Service_WorkingDirectory: /opt/sabnzbd
      systemd_service_Service_ExecStart: /usr/bin/python -OO SABnzbd.py --config-file /var/lib/sabnzbd/sabnzbd.ini --logging 1 --daemon --pidfile /var/run/sabnzbd/sabnzbd.pid
-     systemd_service_PIDFile: /var/run/sabnzbd/sabnzbd.pid
+     systemd_service_Service_PIDFile: /var/run/sabnzbd/sabnzbd.pid
      systemd_service_Service_Type: forking
  - SERVICE:
       name: sabnzbd
