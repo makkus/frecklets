@@ -1,11 +1,11 @@
 tasks:
- # - GROUP:
- #     name: download
- #     gid: 2000
- # - USER:
- #     name: sonarr
- #     group: download
- #     uid: 2003
+ - GROUP:
+     name: download
+     gid: 2000
+ - USER:
+     name: sonarr
+     group: download
+     uid: 2003
  # - CREATE-FOLDER:
  #     path: /var/lib/sonarr
  #     owner: sonarr
@@ -14,10 +14,10 @@ tasks:
  #     path: /var/run/sonarr
  #     owner: sonarr
  #     group: download
- # - install:
- #     packages:
- #      - libmono-cil-dev
- #      - curl
+ - install:
+     packages:
+      - libmono-cil-dev
+      - curl
  - APT_KEY:
      keyserver: keyserver.ubuntu.com
      id: FDA5DFFC
@@ -27,17 +27,17 @@ tasks:
  - install:
      packages:
        - nzbdrone
- # - add-systemd-unit:
- #     systemd_service_name: "radarr"
- #     systemd_service_Unit_Description: radarr movie downloader
- #     systemd_service_Unit_After: "syslog.target network.target"
- #     systemd_service_Install_WantedBy: multi-user.target
- #     systemd_service_Service_Restart: always
- #     systemd_service_Service_User: radarr
- #     systemd_service_Service_WorkingDirectory: /opt/radarr
- #     systemd_service_Service_ExecStart: /usr/bin/mono --debug /opt/Radarr/Radarr.exe --nobrowser
- #     systemd_service_Service_Type: simple
- # - SERVICE:
- #      name: radarr
- #      enabled: yes
- #      state: started
+ - add-systemd-unit:
+     systemd_service_name: "sonarr"
+     systemd_service_Unit_Description: sonarr tv downloader
+     systemd_service_Unit_After: "network.target"
+     systemd_service_Install_WantedBy: multi-user.target
+     systemd_service_Service_Restart: always
+     systemd_service_Service_User: sonarr
+     systemd_service_Service_Group: download
+     systemd_service_Service_ExecStart: /usr/bin/mono /opt/NzbDrone/NzbDrone.exe -nobrowser
+     systemd_service_Service_Type: simple
+ - SERVICE:
+      name: sonarr
+      enabled: yes
+      state: started
