@@ -1,0 +1,43 @@
+tasks:
+ - GROUP:
+     name: download
+     gid: 2000
+ - USER:
+     name: sonarr
+     group: download
+     uid: 2003
+ - CREATE-FOLDER:
+     path: /var/lib/sonarr
+     owner: sonarr
+     group: download
+ - CREATE-FOLDER:
+     path: /var/run/sonarr
+     owner: sonarr
+     group: download
+ - install:
+     packages:
+      - libmono-cil-dev
+      - curl
+ - APT_KEY:
+     keyserver: keyserver.ubuntu.com
+     id: FDA5DFFC
+ - APT_REPOSITORY:
+     repo: deb http://apt.sonarr.tv/ master main
+     filename: sonarr
+ - install:
+     packages:
+       - nzbdrone
+ # - add-systemd-unit:
+ #     systemd_service_name: "radarr"
+ #     systemd_service_Unit_Description: radarr movie downloader
+ #     systemd_service_Unit_After: "syslog.target network.target"
+ #     systemd_service_Install_WantedBy: multi-user.target
+ #     systemd_service_Service_Restart: always
+ #     systemd_service_Service_User: radarr
+ #     systemd_service_Service_WorkingDirectory: /opt/radarr
+ #     systemd_service_Service_ExecStart: /usr/bin/mono --debug /opt/Radarr/Radarr.exe --nobrowser
+ #     systemd_service_Service_Type: simple
+ # - SERVICE:
+ #      name: radarr
+ #      enabled: yes
+ #      state: started
