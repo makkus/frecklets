@@ -10,10 +10,10 @@ tasks:
      path: /var/lib/nzbhydra
      owner: nzbhydra
      group: download
- - CREATE-FOLDER:
-     path: /var/run/nzbhydra
-     owner: nzbhydra
-     group: download
+ # - CREATE-FOLDER:
+     # path: /var/run/nzbhydra
+     # owner: nzbhydra
+     # group: download
  - install:
      packages:
       - python
@@ -36,7 +36,7 @@ tasks:
      systemd_service_Service_User: nzbhydra
      systemd_service_Service_WorkingDirectory: /opt/nzbhydra
      systemd_service_Service_Type: simple
-     systemd_service_Service_ExecStart: /usr/bin/python /opt/nzbhydra/nzbhydra.py --nobrowser
+     systemd_service_Service_ExecStart: /usr/bin/python /opt/nzbhydra/nzbhydra.py --nobrowser --config /var/lib/nzbhydra//settings.cfg --database /var/lib/nzbhydra/nzbhydra.db --logfile /var/lib/nzbhydra/nzbhydra.log
      systemd_service_Service_SuccessExitStatus: 6
      systemd_service_Service_RestartPreventExitStatus: 6
  - SERVICE:
