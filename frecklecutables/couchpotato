@@ -1,0 +1,52 @@
+tasks:
+ - GROUP:
+     name: download
+     gid: 2000
+ - USER:
+     name: radarr
+     group: download
+     uid: 2002
+ - CREATE-FOLDER:
+     path: /var/lib/couchpotato
+     owner: radarr
+     group: download
+ - CREATE-FOLDER:
+     path: /opt/couchpotato
+     owner: radarr
+     group: download
+ - CREATE-FOLDER:
+     path: /var/run/couchpotato
+     owner: radarr
+     group: download
+ - install:
+     packages:
+      - python
+      - git-core
+      - python-lxml
+ - PIP:
+     name: pyopenssl
+     state: latest
+ - git:
+     meta:
+       become: true
+     vars:
+       dest: /opt/couchpotato
+       repo: https://github.com/CouchPotato/CouchPotatoServer.git
+ - FILE:
+     path: /opt/couchpotato
+     recurse: true
+     owner: radarr
+ - add-systemd-unit:
+     systemd_service_name: "couchpotato"
+     systemd_service_Unit_Description: Couchpotato movie downloader
+     systemd_service_Unit_After: network.target
+     systemd_service_Install_WantedBy: multi-user.target
+     systemd_service_Service_Restart: always
+     systemd_service_Service_User: radarr
+     systemd_service_Service_WorkingDirectory: /opt/couchpotato
+     systemd_service_Service_ExecStart: /usr/bin/python /opt/couchpotato/CouchPotato.py
+     systemd_service_Service_Type: simple
+ - SERVICE:
+      name: couchpotato
+      enabled: yes
+      state: started
