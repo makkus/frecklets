@@ -120,7 +120,13 @@ RuntimeDirectory={{ systemd_service_Service_RuntimeDirectory }}
 RuntimeDirectoryMode={{ systemd_service_Service_RuntimeDirectoryMode }}
 {% endif -%}
 
+{% if systemd_service_Service_SuccessExitStatus is defined %}
+SuccessExitStatus={{ systemd_service_Service_SuccessExitStatus }}
+{% endif -%}
 
+{% if systemd_service_Service_RestartPreventExitStatus is defined %}
+RestartPreventExitStatus={{ systemd_service_Service_RestartPreventExitStatus }}
+{% endif -%}
 
 [Install]
 {% if systemd_service_Install_WantedBy is defined %}
