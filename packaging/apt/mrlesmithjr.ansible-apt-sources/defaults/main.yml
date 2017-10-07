@@ -17,8 +17,8 @@ apt_sources_archive_types:
 # Specific to Debian not Ubuntu
 apt_sources_debian_components:
   - 'main'
-  - 'contrib'
-  - 'non-free'
+  # - 'contrib'
+  # - 'non-free'
 
 # The release class (oldstable, stable, testing, unstable) respectively.
 #
@@ -28,7 +28,7 @@ apt_sources_debian_distribution: 'stable'
 # Specific to Debian not Ubuntu
 apt_sources_debian_repository_url: 'http://deb.debian.org'
 
-apt_sources_enable_backports: true
+apt_sources_enable_backports: false
 
 apt_sources_enable_proposed: false
 
@@ -40,8 +40,8 @@ apt_sources_enable_updates: true
 apt_sources_ubuntu_components:
   - 'main'
   - 'multiverse'
-  - 'restricted'
   - 'universe'
+  # - 'restricted'
 
 # Specific to Ubuntu not Debian
 apt_sources_ubuntu_repository_url: 'http://archive.ubuntu.com'

@@ -11,3 +11,9 @@ tasks:
         task-desc: adding systemd unit
         task-name: tumf.systemd-service
         task-type: ansible-role
+  - apt-sources:
+      meta:
+        become: yes
+        task-desc: setting apt source(s)
+        task-type: ansible-role
+        task-name: mrlesmithjr.ansible-apt-sources

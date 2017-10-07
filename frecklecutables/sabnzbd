@@ -18,6 +18,12 @@ tasks:
      path: /var/run/sabnzbd
      owner: sabnzbd
      group: download
+ - apt-sources:
+     apt_sources_archive_types: deb
+     apt_sources_debian_components:
+       - 'main'
+       - 'contrib'
+       - 'non-free'
  - install:
      packages:
       - unrar-free
