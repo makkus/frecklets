@@ -8,11 +8,11 @@ tasks:
      uid: 2002
  - CREATE-FOLDER:
      path: /var/lib/radarr
-     owner: sabnzbd
+     owner: radarr
      group: download
  - CREATE-FOLDER:
      path: /var/run/radarr
-     owner: sabnzbd
+     owner: radarr
      group: download
  - install:
      packages:
