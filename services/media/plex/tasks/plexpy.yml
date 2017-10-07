@@ -1,0 +1,92 @@
+---
+- name: PLEX | Install git
+  package:
+    name: git
+    state: present
+
+- name: PLEXPY | Create user
+  group:
+    name: "{{ plexpy_group }}"
+    state: present
+
+- name: PLEXPY | Create user
+  user:
+    name: "{{ plexpy_user }}"
+    group: "{{ plexpy_group }}"
+    createhome: no
+
+- name: PLEXPY | Clone Plexpy repo
+  git:
+    repo: https://github.com/JonnyWong16/plexpy
+    dest: "{{ plexpy_install_location }}"
+
+- name: PLEXPY | Set permissions
+  file:
+    path: "{{ plexpy_install_location }}"
+    owner: "{{ plexpy_user }}"
+    group: "{{ plexpy_group }}"
+    recurse: yes
+
+- block:
+    - name: PLEXPY | Move init script for using systemd
+      template:
+        src: plexpy/init.systemd.jinja2
+        dest: /lib/systemd/system/plexpy.service
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: PLEXPY | Autostart Plexpy and restart service
+      systemd:
+        name: plexpy
+        enabled: yes
+        daemon_reload: yes
+      notify: restart plexpy
+
+  when: (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '16.04') or (ansible_distribution == 'CentOS' and ansible_distribution_major_version == '7')
+
+- block:
+    - name: PLEXPY | Move init script for CentOS versions
+      file:
+        src: "{{ plexpy_install_location }}/init-scripts/init.fedora.CentOS.service"
+        dest: /etc/init.d/plexpy
+        owner: root
+        group: root
+        mode: 0744
+        state: link
+
+    - name: PLEXPY | Set defaults in file
+      template:
+        src: plexpy/CentOS-plexpy.jinja2
+        dest: /etc/default/plexpy
+
+    - name: PLEXPY | Autostart Plexpy and restart service
+      service:
+        name: plexpy
+        enabled: yes
+      notify: restart plexpy
+
+  when: ansible_distribution == 'CentOS' and ansible_distribution_version == '6'
+
+- block:
+    - name: PLEXPY | Move init script for older ubuntu versions
+      file:
+        src: "{{ plexpy_install_location }}/init-scripts/init.ubuntu"
+        dest: /etc/init.d/plexpy
+        owner: root
+        group: root
+        mode: 0744
+        state: link
+
+    - name: PLEXPY | Set defaults in file
+      template:
+        src: plexpy/ubuntu-plexpy.jinja2
+        dest: /etc/default/plexpy
+
+    - name: PLEXPY | Autostart Plexpy and restart service
+      service:
+        name: plexpy
+        enabled: yes
+      notify: restart plexpy
+
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version <= '15.10'

@@ -1,0 +1,19 @@
+---
+# defaults for plexpy
+plexpy_install: yes
+plexpy_user: "plexpy"
+plexpy_group: "plexpy"
+plexpy_install_location: "/opt/plexpy/"
+plexpy_config_location: "/etc/plexpyconfig.ini"
+plexpy_data_location: "/opt/plexpy/data"
+
+# defaults for plexupdate
+plexupdate_install: no
+plexupdate_install_location: "/opt/plexupdate/"
+plexupdate_config_location: "/etc/plexupdate.conf"
+plexupdate_cronwrapper: "/etc/cron.daily/plexupdate"
+
+plexupdate_autoinstall: yes
+plexupdate_autoupdate: yes
+plexupdate_public: yes
+plexupdate_notify: no
