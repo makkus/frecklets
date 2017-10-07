@@ -1,0 +1,30 @@
+---
+- name: PLEXUPDATE | Install git
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - wget
+    - git
+
+- name: PLEXUPDATE | Clone plexupdate repository
+  git:
+    repo: https://github.com/mrworf/plexupdate.git
+    dest: "{{ plexupdate_install_location }}"
+
+- name: PLEXUPDATE | Create desired config
+  template:
+    src: plexupdate/plexupdate.conf.tpl
+    dest: "{{ plexupdate_config_location }}"
+
+- name: PLEXUPDATE | Create cron config
+  template:
+    src: plexupdate/plexupdate.cron.conf.tpl
+    dest: "/etc/plexupdate.cron.conf"
+
+- name: PLEXUPDATE | Create cron job
+  file:
+    src: "{{ plexupdate_install_location }}/extras/cronwrapper"
+    dest: "{{ plexupdate_cronwrapper }}"
+    state: link
+  when: plexupdate_autoinstall or plexupdate_autoupdate
