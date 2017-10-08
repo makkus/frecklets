@@ -7,11 +7,13 @@
 - name: PLEXPY | Create user
   group:
     name: "{{ plexpy_group }}"
+    gid: "{{ plexpy_gid }}"
     state: present
 
 - name: PLEXPY | Create user
   user:
     name: "{{ plexpy_user }}"
+    uid: "{{ plexpy_uid }}"
     group: "{{ plexpy_group }}"
     createhome: no
 
