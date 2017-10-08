@@ -1,8 +1,13 @@
 ---
+plex_uid: 3000
+plex_gid: 3000
+
 # defaults for plexpy
 plexpy_install: yes
 plexpy_user: "plexpy"
+plexpy_uid: 3001
 plexpy_group: "plexpy"
+plexpy_gid: 3001
 plexpy_install_location: "/opt/plexpy/"
 plexpy_config_location: "/etc/plexpyconfig.ini"
 plexpy_data_location: "/opt/plexpy/data"

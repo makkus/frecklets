@@ -1,4 +1,14 @@
 ---
+- name: add plex group
+  group:
+    name: plex
+    gid: "{{ plex_gid }}"
+
+- name: add plex user
+  user:
+    name: plex
+    uid: "{{ plex_uid }}"
+
 - block:
     - name: PLEX | Add Plex Yum repo
       yum_repository:
