@@ -1,0 +1,52 @@
+tasks:
+ - GROUP:
+     name: download
+     gid: 2000
+ - USER:
+     name: mylar
+     group: download
+     uid: 2004
+ - CREATE-FOLDER:
+     path: /var/lib/mylar/data
+     owner: mylar
+     group: download
+ - CREATE-FOLDER:
+     path: /opt/mylar
+     owner: mylar
+     group: download
+ - CREATE-FOLDER:
+     path: /var/run/mylar
+     owner: mylar
+     group: download
+ - install:
+     packages:
+      - python
+      - python-cherrypy
+      - git
+ - git:
+     meta:
+       become: true
+     vars:
+       dest: /opt/mylar
+       repo: https://github.com/evilhero/mylar
+       branch: development
+ - FILE:
+     path: /opt/mylar
+     recurse: true
+     owner: mylar
+ - add-systemd-unit:
+     systemd_service_name: "mylar"
+     systemd_service_Unit_Description: mylar comic downloader
+     systemd_service_Unit_After: network.target
+     systemd_service_Install_WantedBy: multi-user.target
+     systemd_service_Service_Restart: always
+     systemd_service_Service_User: mylar
+     systemd_service_Service_Group: download
+     systemd_service_Service_WorkingDirectory: /opt/mylar
+     systemd_service_Service_ExecStart: /usr/bin/python /opt/mylar/Mylar.py --daemon --datadir=/var/lib/mylar/data --config=/var/lib/mylar/config.ini --nolaunch
+     systemd_service_Service_GuessMainPID: no
+     systemd_service_Service_Type: forking
+ - SERVICE:
+      name: mylar
+      enabled: yes
+      state: started

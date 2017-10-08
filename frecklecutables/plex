@@ -1,4 +1,15 @@
 tasks:
+  - GROUP:
+      name: plex
+      gid: 3000
+  - USER:
+      name: plexpy
+      uid: 3001
+      group: plex
+  - CREATE-FOLDER:
+      path: /var/lib/plexpy
+      owner: plexpy
+      group: plex
   - install-plex:
       plexupdate_install: yes
       plexupdate_config_location: /etc/plexupdate.conf
