@@ -7,10 +7,14 @@ tasks:
      group: download
      uid: 2004
  - CREATE-FOLDER:
-     path: /var/lib/mylar/data
+     path: /var/lib/mylar
      owner: mylar
      group: download
  - CREATE-FOLDER:
+     path: /var/lib/mylar/data
+     owner: mylar
+     group: download
+- CREATE-FOLDER:
      path: /opt/mylar
      owner: mylar
      group: download
