@@ -1,0 +1,35 @@
+doc:
+  help: installing ubooquity ebook/comic server
+tasks:
+  - USER:
+      name: streama
+      comment: "streama service user"
+  - install-oracle-java
+  - CREATE-FOLDER:
+      path: /opt/streama
+      owner: streama
+  - GET_URL:
+      url: https://github.com/dularion/streama/releases/download/v1.0.11/streama-1.0.11.war
+      dest: /opt/streama/streama.war
+      mode: 775
+  - GET_URL:
+      url: https://raw.githubusercontent.com/dularion/streama/master/docs/sample_application.yml
+      dest: /opt/streama/application.yml
+  - FILE:
+     path: /opt/streama
+     recurse: true
+     owner: streama
+  - add-systemd-unit:
+      systemd_service_name: "streama"
+      systemd_service_Unit_Description: Streama service
+      systemd_service_Unit_After: network.target
+      systemd_service_Install_WantedBy: multi-user.target
+      systemd_service_Service_Restart: always
+      systemd_service_Service_User: streama
+      systemd_service_Service_ExecStart: /opt/streama/streama.war
+      systemd_service_Service_WorkingDirectory: /opt/streama
+      systemd_service_Service_Type: simple
+  # - SERVICE:
+  #     name: ubooquity
+  #     enabled: yes
+  #     state: started

@@ -1,7 +1,7 @@
 tasks:
   - GROUP:
       name: plex
-      gid: 3000
+      gid: 2000
   - USER:
       name: plexpy
       uid: 3001
