@@ -1,6 +1,6 @@
 tasks:
   - GROUP:
-      name: plex
+      name: download
       gid: 2000
   - USER:
       name: plexpy
