@@ -1,6 +1,9 @@
 doc:
   help: installing ubooquity ebook/comic server
 tasks:
+  - GROUP:
+      name: download
+      gid: 2000
   - USER:
       name: streama
       uid: 3033
