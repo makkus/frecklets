@@ -3,6 +3,8 @@ doc:
 tasks:
   - USER:
       name: streama
+      uid: 3033
+      group: download
       comment: "streama service user"
   - install-oracle-java
   - CREATE-FOLDER:
