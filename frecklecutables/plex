@@ -9,7 +9,6 @@ tasks:
   - CREATE-FOLDER:
       path: /var/lib/plexpy
       owner: plexpy
-      group: plex
   - install-plex:
       plexupdate_install: yes
       plexupdate_config_location: /etc/plexupdate.conf
