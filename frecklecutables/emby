@@ -1,0 +1,18 @@
+doc:
+  help: installing emby streaming server
+tasks:
+  - GROUP:
+      name: download
+      gid: 2000
+  - USER:
+      name: emby
+      uid: 3034
+      group: download
+      comment: "emby service user"
+  - APT_REPOSITORY:
+      repo: 'deb http://download.opensuse.org/repositories/home:/emby/Debian_9.0/ /'
+      filename: emby-server
+  # - SERVICE:
+      # name: ubooquity
+      # enabled: yes
+      # state: started
