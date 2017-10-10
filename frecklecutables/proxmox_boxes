@@ -1,0 +1,7 @@
+doc:
+  help: add a proxmox box
+tasks:
+  - install:
+    - python-pip
+  - PIP:
+    name: proxmoxer
