@@ -4,4 +4,4 @@ tasks:
   - install:
     - python-pip
   - PIP:
-    name: proxmoxer
+      name: proxmoxer
