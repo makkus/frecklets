@@ -1,8 +1,4 @@
 ---
-- name: Installing libselinux-python bindings
-  yum:
-    name: libselinux-python
-
 - name: Enable nginx repo.
   template:
     src: nginx.repo.j2
