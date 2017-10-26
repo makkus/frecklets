@@ -1,24 +1,8 @@
 tasks:
   - GROUP:
-      name: download
-      gid: 2000
+      name: git
+      gid: 4001
   - USER:
-      name: plexpy
-      uid: 3001
-      # group: plex
-  - CREATE-FOLDER:
-      path: /var/lib/plexpy
-      owner: plexpy
-  - install-plex:
-      plexupdate_install: yes
-      plexpy_install: no
-      plexupdate_config_location: /etc/plexupdate.conf
-      plexupdate_public: no
-      plex_uid: 3000
-      plex_gid: 3000
-      plexpy_user: plexpy
-      plexpy_uid: 300
-      plexpy_group: plex
-      plexpy_gid: 3001
-      plexpy_config_location: /var/lib/plexpy/config.ini
-      plexpy_data_location: /var/lib/plexpy/data
+      name: git
+      uid: 4001
+  - install-gitea
