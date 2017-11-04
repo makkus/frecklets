@@ -5,4 +5,7 @@ tasks:
   - USER:
       name: git
       uid: 4001
-  - install-gitea
+  - install-gitea:
+      gitea_version: 1.2.1
+      gitea_bin: /opt/gitea
+      gitea_working_dir: /home/git
