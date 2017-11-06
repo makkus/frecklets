@@ -11,7 +11,7 @@ tasks:
       letsencrypt_webroot_path: /var/www/html
       letsencrypt_email: "{{:: email ::}}"
       letsencrypt_cert_domains:
-        - "{{:: hostname ::}}"
+        - "test.freckles.io"
       letsencrypt_renewal_command_args: '--renew-hook "systemctl restart nginx"'
 
   - geerlingguy.nginx:
