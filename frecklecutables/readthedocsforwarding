@@ -2,8 +2,14 @@ args:
   hostname:
      help: the hostname of the server
      required: true
+     is_var: false
   email:
      help: the email of the server admin
+     required: true
+     is_var: false
+  project:
+     help: the project name on readthedocs
+     is_var: false
      required: true
 tasks:
   - install: fail2ban
@@ -11,9 +17,8 @@ tasks:
       letsencrypt_webroot_path: /var/www/html
       letsencrypt_email: "{{:: email ::}}"
       letsencrypt_cert_domains:
-        - "test.freckles.io"
+        - "{{:: hostname ::}}"
       letsencrypt_renewal_command_args: '--renew-hook "systemctl restart nginx"'
-
   - geerlingguy.nginx:
       nginx_remove_default_vhost: true
       nginx_vhosts:
@@ -25,7 +30,7 @@ tasks:
          state: "present"
          extra_parameters: |
             location / {
-               proxy_pass https://freckles.readthedocs.io:443;
+               proxy_pass https://{{:: project ::}}.readthedocs.io:443;
                proxy_set_header Host $http_host;
                proxy_set_header X-Forwarded-Proto https;
                proxy_set_header X-Real-IP $remote_addr;
