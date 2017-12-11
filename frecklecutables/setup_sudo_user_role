@@ -12,7 +12,6 @@ tasks:
       name: "{{:: user_name ::}}"
       password: "{{:: password ::}}"
       update_password: always
-  # - geerlingguy.security:
   - GEERLINGGUY.SECURITY:
       security_sudoers_passwordless:
         - "{{:: user_name ::}}"
