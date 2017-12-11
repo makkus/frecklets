@@ -10,7 +10,7 @@ gitea_bin: /home/gitea/bin/gitea
 gitea_envfile: /etc/default/gitea
 
 # Gitea home directory
-gitea_working_dir: /home/gitea
+gitea_working_dir: /home/git
 
 # Runtime user and group for the gitea service
 gitea_user: git
